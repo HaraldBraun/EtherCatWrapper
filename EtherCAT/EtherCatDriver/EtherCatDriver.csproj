@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <Target Name="CopyEtherCatWrapperDll" AfterTargets="Build">
+    <ItemGroup>
+      <WrapperDll Include="$(SolutionDir)$(Configuration)\EtherCatWrapper.dll" />
+    </ItemGroup>
+    <Copy SourceFiles="@(WrapperDll)"
+          DestinationFolder="$(TargetDir)"
+          SkipUnchangedFiles="true" />
+  </Target>
+</Project>

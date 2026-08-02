@@ -1,0 +1,11 @@
+C:\Work\GitHub\SOEM-master\EtherCAT\EtherCatDriver\obj\Debug\net8.0\EtherCatDriver.GeneratedMSBuildEditorConfig.editorconfig
+C:\Work\GitHub\SOEM-master\EtherCAT\EtherCatDriver\obj\Debug\net8.0\EtherCatDriver.AssemblyInfoInputs.cache
+C:\Work\GitHub\SOEM-master\EtherCAT\EtherCatDriver\obj\Debug\net8.0\EtherCatDriver.AssemblyInfo.cs
+C:\Work\GitHub\SOEM-master\EtherCAT\EtherCatDriver\obj\Debug\net8.0\EtherCatDriver.csproj.CoreCompileInputs.cache
+C:\Work\GitHub\SOEM-master\EtherCAT\EtherCatDriver\bin\Debug\net8.0\EtherCatDriver.deps.json
+C:\Work\GitHub\SOEM-master\EtherCAT\EtherCatDriver\bin\Debug\net8.0\EtherCatDriver.dll
+C:\Work\GitHub\SOEM-master\EtherCAT\EtherCatDriver\bin\Debug\net8.0\EtherCatDriver.pdb
+C:\Work\GitHub\SOEM-master\EtherCAT\EtherCatDriver\obj\Debug\net8.0\EtherCatDriver.dll
+C:\Work\GitHub\SOEM-master\EtherCAT\EtherCatDriver\obj\Debug\net8.0\refint\EtherCatDriver.dll
+C:\Work\GitHub\SOEM-master\EtherCAT\EtherCatDriver\obj\Debug\net8.0\EtherCatDriver.pdb
+C:\Work\GitHub\SOEM-master\EtherCAT\EtherCatDriver\obj\Debug\net8.0\ref\EtherCatDriver.dll
