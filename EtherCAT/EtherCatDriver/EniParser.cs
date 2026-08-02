@@ -14,14 +14,14 @@ public readonly struct EniSlaveInfo {
 
 public static class EniParser {
     /// <summary>
-    /// Extrahiert VendorId und ProductCode des ersten Slaves aus einer ENI-Datei.
+    /// Extracts the VendorId and ProductCode of the first slave from an ENI file.
     /// </summary>
-    /// <returns>EniSlaveInfo bei Erfolg, null falls die Datei nicht lesbar/gültig ist.</returns>
+    /// <returns>EniSlaveInfo on success, null if the file is unreadable or invalid.</returns>
     public static EniSlaveInfo? ParseFirstSlave( string eniFilePath ) {
         try {
             var doc = XDocument.Load(eniFilePath);
 
-            // Entspricht root.find(".//Slave/Info") aus dem Python-Vorbild
+            // Equivalent to root.find(".//Slave/Info") in the Python reference
             var info = doc.Descendants("Slave").Elements("Info").FirstOrDefault();
             if (info is null) {
                 return null;
@@ -38,17 +38,17 @@ public static class EniParser {
 
             return new EniSlaveInfo( vendorId, productCode );
         } catch (Exception) {
-            // Datei nicht vorhanden, ungültiges XML, oder Werte nicht parsbar
+            // File missing, invalid XML, or values not parseable
             return null;
         }
     }
 
     /// <summary>
-    /// Sucht unter den bereits gefundenen Slaves (aus EtherCatMaster) denjenigen,
-    /// der zu Vendor/Product aus der ENI-Datei passt.
-    /// Fallback: erster Slave, falls keiner exakt passt (analog zum Python-Vorbild).
+    /// Searches among the already-detected slaves (from EtherCatMaster) for the one
+    /// that matches Vendor/Product from the ENI file.
+    /// Fallback: first slave if none match exactly (same behavior as the Python reference).
     /// </summary>
-    /// <returns>1-basierter Slave-Index, oder -1 falls gar keine Slaves vorhanden sind.</returns>
+    /// <returns>1-based slave index, or -1 if no slaves are present.</returns>
     public static int FindTargetSlaveIndex( EtherCatMaster master, string eniFilePath ) {
         int slaveCount = master.GetSlaveCount();
         if (slaveCount <= 0) {
@@ -68,7 +68,7 @@ public static class EniParser {
             }
         }
 
-        // Kein exakter Treffer → Fallback auf ersten Slave (wie im Python-Skript)
+        // No exact match -> fallback to first slave (as in the Python script)
         return 1;
     }
 }
