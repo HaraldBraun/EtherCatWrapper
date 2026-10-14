@@ -25,7 +25,7 @@ static unsigned char SiiCrc8(const unsigned char *data, int len)
 
 int ECW_Init(const char *ifname)
 {
-   // ec_init öffnet den Netzwerkadapter für Raw-Ethernet-Zugriff (via Npcap)
+   // ecx_init opens the network adapter for raw ethernet access (via Npcap)
    if (ecx_init(&g_ctx, ifname))
    {
       g_initialized = true;
@@ -42,7 +42,7 @@ int ECW_ConfigInit()
       return -1;
    }
 
-   // Scannt den Bus, bringt alle Slaves nach PRE-OP und füllt ec_slave[]
+   // Scans the bus, forces all slaves to PRE-OP and fills ecx_slave[]
    int slaveCount = ecx_config_init(&g_ctx);
    return slaveCount;
 }
@@ -127,6 +127,9 @@ int ECW_HasSlaveError(int slaveIdx)
    return (g_ctx.slavelist[slaveIdx].state & EC_STATE_ERROR) ? 1 : 0;
 }
 
+// *************************
+// EEPROM Sektion
+// *************************
 int ECW_ReadEeprom(int slaveIdx, unsigned short eepromAddr, unsigned short *outData)
 {
    if (!g_initialized || outData == nullptr)
@@ -164,7 +167,7 @@ int ECW_WriteEeprom(int slaveIdx, unsigned short eepromAddr, unsigned short data
 
    uint16 configadr = g_ctx.slavelist[slaveIdx].configadr;
 
-   int wkc = ecx_writeeepromFP(&g_ctx, configadr, eepromAddr, data, EC_TIMEOUTEEP);
+   int wkc = ecx_writeeeprom(&g_ctx, configadr, eepromAddr, data, EC_TIMEOUTEEP);
 
    return (wkc > 0) ? 1 : 0;
 }
@@ -279,4 +282,350 @@ int ECW_FindWorkingAdapter()
       }
    }
    return -1;
+}
+
+int ECW_GetSlaveAlias(int slaveIdx, unsigned short *alias)
+{
+   if (!g_initialized || alias == nullptr)
+   {
+      return 0;
+   }
+
+   if (slaveIdx < 1 || slaveIdx > g_ctx.slavecount)
+   {
+      return 0;
+   }
+
+   *alias = g_ctx.slavelist[slaveIdx].aliasadr;
+
+   return 1;
+}
+
+// *************************
+// ReadSdo Sektion
+// *************************
+static int ReadSdo(int slaveIdx, uint16_t index, uint8_t subIndex, void *data, int size)
+{
+   if (!g_initialized)
+      return 0;
+
+   if (data == nullptr)
+      return 0;
+
+   if (size <= 0)
+      return 0;
+
+   if (slaveIdx < 1 || slaveIdx > g_ctx.slavecount)
+      return 0;
+
+   return ecx_SDOread(
+       &g_ctx,
+       (uint16)slaveIdx,
+       index,
+       subIndex,
+       FALSE,
+       &size,
+       data,
+       EC_TIMEOUTRXM);
+}
+
+int ECW_ReadSdoBool(int slaveIdx, uint16_t index, uint8_t subIndex, bool *value)
+{
+   if ( value == nullptr)
+       return 0;
+
+   uint8_t data = 0;
+
+   int wkc = ReadSdo(
+       slaveIdx,
+       index,
+       subIndex,
+       &data,
+       sizeof(data));
+
+   if (wkc > 0)
+   {
+      *value = (data != 0);
+   }
+
+   return wkc;
+}
+
+int ECW_ReadSdoUInt8(int slaveIdx, uint16_t index, uint8_t subIndex, uint8_t *value)
+{
+   return ReadSdo(
+       slaveIdx,
+       index,
+       subIndex,
+       value,
+       sizeof(uint8_t));
+}
+
+int ECW_ReadSdoUInt16(int slaveIdx, uint16_t index, uint8_t subIndex, uint16_t* value)
+{
+   return ReadSdo(
+       slaveIdx,
+       index,
+       subIndex,
+       value,
+       sizeof(uint16_t));
+}
+
+int ECW_ReadSdoUInt32(int slaveIdx, uint16_t index, uint8_t subIndex, uint32_t* value)
+{
+   return ReadSdo(
+       slaveIdx,
+       index,
+       subIndex,
+       value,
+       sizeof(uint32_t));
+}
+
+int ECW_ReadSdoUInt64(int slaveIdx, uint16_t index, uint8_t subIndex, uint64_t *value)
+{
+   return ReadSdo(
+       slaveIdx,
+       index,
+       subIndex,
+       value,
+       sizeof(uint64_t));
+}
+
+int ECW_ReadSdoInt8(int slaveIdx, uint16_t index, uint8_t subIndex, int8_t *value)
+{
+   return ReadSdo(
+       slaveIdx,
+       index,
+       subIndex,
+       value,
+       sizeof(int8_t));
+}
+
+int ECW_ReadSdoInt16(int slaveIdx, uint16_t index, uint8_t subIndex, int16_t *value)
+{
+   return ReadSdo(
+       slaveIdx,
+       index,
+       subIndex,
+       value,
+       sizeof(int16_t));
+}
+
+int ECW_ReadSdoInt32(int slaveIdx, uint16_t index, uint8_t subIndex, int32_t *value)
+{
+   return ReadSdo(
+       slaveIdx,
+       index,
+       subIndex,
+       value,
+       sizeof(int32_t));
+}
+
+int ECW_ReadSdoInt64(int slaveIdx, uint16_t index, uint8_t subIndex, int64_t *value)
+{
+   return ReadSdo(
+       slaveIdx,
+       index,
+       subIndex,
+       value,
+       sizeof(int64_t));
+}
+
+int ECW_ReadSdoFloat(int slaveIdx, uint16_t index, uint8_t subIndex, float *value)
+{
+   return ReadSdo(
+       slaveIdx,
+       index,
+       subIndex,
+       value,
+       sizeof(float));
+}
+
+int ECW_ReadSdoDouble(int slaveIdx, uint16_t index, uint8_t subIndex, double *value)
+{
+   return ReadSdo(
+       slaveIdx,
+       index,
+       subIndex,
+       value,
+       sizeof(double));
+}
+
+int ECW_ReadSdoString(int slaveIdx, uint16_t index, uint8_t subIndex, char *buffer, int bufferSize)
+{
+   if (!g_initialized)
+      return 0;
+
+   if (slaveIdx < 1 || slaveIdx > g_ctx.slavecount)
+      return 0;
+
+   if (buffer == nullptr)
+      return 0;
+
+   if (bufferSize <= 0)
+      return 0;
+
+   memset(buffer, 0, bufferSize);
+
+   int size = bufferSize;
+
+   return ecx_SDOread(
+       &g_ctx,
+       (uint16)slaveIdx,
+       index,
+       subIndex,
+       FALSE,
+       &size,
+       buffer,
+       EC_TIMEOUTRXM);
+}
+
+// *************************
+// WriteSdo Sektion
+// *************************
+static int WriteSdo(int slaveIdx, uint16_t index, uint8_t subIndex, const void *data, int size)
+{
+   if (!g_initialized)
+      return 0;
+   if (data == nullptr)
+      return 0;
+   if (size <= 0)
+      return 0;
+   if (slaveIdx < 1 || slaveIdx > g_ctx.slavecount)
+      return 0;
+   return ecx_SDOwrite(&g_ctx, (uint16)slaveIdx, index, subIndex, FALSE, size, (void *)data, EC_TIMEOUTRXM);
+}
+
+int ECW_WriteSdoBool(int slaveIdx, uint16_t index, uint8_t subIndex, bool value)
+{
+   uint8_t data = value ? 1 : 0;
+   return WriteSdo(slaveIdx, index, subIndex, &data, sizeof(data));
+}
+
+int ECW_WriteSdoUInt8(int slaveIdx, uint16_t index, uint8_t subIndex, uint8_t value)
+{
+   return WriteSdo(slaveIdx, index, subIndex, &value, sizeof(value));
+}
+
+int ECW_WriteSdoUInt16(int slaveIdx, uint16_t index, uint8_t subIndex, uint16_t value)
+{
+   return WriteSdo(slaveIdx, index, subIndex, &value, sizeof(value));
+}
+
+int ECW_WriteSdoUInt32(int slaveIdx, uint16_t index, uint8_t subIndex, uint32_t value)
+{
+   return WriteSdo(slaveIdx, index, subIndex, &value, sizeof(value));
+}
+
+int ECW_WriteSdoUInt64(int slaveIdx, uint16_t index, uint8_t subIndex, uint64_t value)
+{
+   return WriteSdo(slaveIdx, index, subIndex, &value, sizeof(value));
+}
+
+int ECW_WriteSdoInt8(int slaveIdx, uint16_t index, uint8_t subIndex, int8_t value)
+{
+   return WriteSdo(slaveIdx, index, subIndex, &value, sizeof(value));
+}
+
+int ECW_WriteSdoInt16(int slaveIdx, uint16_t index, uint8_t subIndex, int16_t value)
+{
+   return WriteSdo(slaveIdx, index, subIndex, &value, sizeof(value));
+}
+
+int ECW_WriteSdoInt32(int slaveIdx, uint16_t index, uint8_t subIndex, int32_t value)
+{
+   return WriteSdo(slaveIdx, index, subIndex, &value, sizeof(value));
+}
+
+int ECW_WriteSdoInt64(int slaveIdx, uint16_t index, uint8_t subIndex, int64_t value)
+{
+   return WriteSdo(slaveIdx, index, subIndex, &value, sizeof(value));
+}
+
+int ECW_WriteSdoFloat(int slaveIdx, uint16_t index, uint8_t subIndex, float value)
+{
+   return WriteSdo(slaveIdx, index, subIndex, &value, sizeof(value));
+}
+
+int ECW_WriteSdoDouble(int slaveIdx, uint16_t index, uint8_t subIndex, double value)
+{
+   return WriteSdo(slaveIdx, index, subIndex, &value, sizeof(value));
+}
+
+int ECW_WriteSdoString(int slaveIdx, uint16_t index, uint8_t subIndex, const char *str, int length)
+{
+   if (str == nullptr || length <= 0)
+      return 0;
+   return WriteSdo(slaveIdx, index, subIndex, (void *)str, length);
+}
+
+// *************************
+// Debug Sektion
+// *************************
+unsigned short ECW_DebugGetAlias(int slaveIdx) {
+   if (!g_initialized)
+   {
+      return 0xFFFF;
+   }
+
+   if (slaveIdx < 1 || slaveIdx > g_ctx.slavecount)
+   {
+      return 0xFFFF;
+   }
+   
+   return g_ctx.slavelist[slaveIdx].aliasadr;
+}
+
+unsigned short ECW_DebugGetConfigAdr(int slaveIdx)
+{
+   if (!g_initialized)
+   {
+      return 0xFFFF;
+   }
+
+   if (slaveIdx < 1 || slaveIdx > g_ctx.slavecount)
+   {
+      return 0xFFFF;
+   }
+   return g_ctx.slavelist[slaveIdx].configadr;
+}
+
+const char* ECW_DebugGetName(int slaveIdx) {
+   if (!g_initialized)
+   {
+      return "";
+   }
+
+   if (slaveIdx < 1 || slaveIdx > g_ctx.slavecount)
+   {
+      return "";
+   }
+   return g_ctx.slavelist[slaveIdx].name;
+}
+
+unsigned int ECW_DebugGetRevision(int slaveIdx) {
+   if (!g_initialized)
+   {
+      return 0xFFFFFFFF;
+   }
+
+   if (slaveIdx < 1 || slaveIdx > g_ctx.slavecount)
+   {
+      return 0xFFFFFFFF;
+   }
+   return g_ctx.slavelist[slaveIdx].eep_rev;
+}
+
+unsigned int ECW_DebugGetSerial(int slaveIdx)
+{
+   if (!g_initialized)
+   {
+      return 0xFFFFFFFF;
+   }
+
+   if (slaveIdx < 1 || slaveIdx > g_ctx.slavecount)
+   {
+      return 0xFFFFFFFF;
+   }
+   return g_ctx.slavelist[slaveIdx].eep_ser;
 }

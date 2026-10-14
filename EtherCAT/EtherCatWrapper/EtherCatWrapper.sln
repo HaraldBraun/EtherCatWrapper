@@ -1,13 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.37502.11
+# Visual Studio Version 18
+VisualStudioVersion = 18.9.12120.119
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EtherCatWrapper", "EtherCatWrapper.vcxproj", "{C49266A1-459A-4099-875C-CB0D3F8150F4}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SanityCheck", "..\SanityCheck\SanityCheck.vcxproj", "{CD87460A-D948-47DE-896A-CEF138D52C59}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtherCatDriver", "..\EtherCatDriver\EtherCatDriver.csproj", "{59AE125D-ACA1-41DB-9F78-23ECBFB5E5BC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C49266A1-459A-4099-875C-CB0D3F8150F4} = {C49266A1-459A-4099-875C-CB0D3F8150F4}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,7 +45,6 @@ Global
 		{CD87460A-D948-47DE-896A-CEF138D52C59}.Release|x64.ActiveCfg = Release|x64
 		{CD87460A-D948-47DE-896A-CEF138D52C59}.Release|x64.Build.0 = Release|x64
 		{CD87460A-D948-47DE-896A-CEF138D52C59}.Release|x86.ActiveCfg = Release|Win32
-		{CD87460A-D948-47DE-896A-CEF138D52C59}.Release|x86.Build.0 = Release|Win32
 		{59AE125D-ACA1-41DB-9F78-23ECBFB5E5BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{59AE125D-ACA1-41DB-9F78-23ECBFB5E5BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59AE125D-ACA1-41DB-9F78-23ECBFB5E5BC}.Debug|x64.ActiveCfg = Debug|Any CPU

@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "targets": {
     "net8.0": {}
   },
@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Work\\GitHub\\SOEM-master\\EtherCAT\\EtherCatDriver\\EtherCatDriver.csproj",
+      "projectUniqueName": "C:\\Work\\GitHub\\EtherCatWrapper\\EtherCAT\\EtherCatDriver\\EtherCatDriver.csproj",
       "projectName": "EtherCatDriver",
-      "projectPath": "C:\\Work\\GitHub\\SOEM-master\\EtherCAT\\EtherCatDriver\\EtherCatDriver.csproj",
+      "projectPath": "C:\\Work\\GitHub\\EtherCatWrapper\\EtherCAT\\EtherCatDriver\\EtherCatDriver.csproj",
       "packagesPath": "C:\\Users\\Haral\\.nuget\\packages\\",
-      "outputPath": "C:\\Work\\GitHub\\SOEM-master\\EtherCAT\\EtherCatDriver\\obj\\",
+      "outputPath": "C:\\Work\\GitHub\\EtherCatWrapper\\EtherCAT\\EtherCatDriver\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -38,6 +38,7 @@
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "projectReferences": {}
         }
@@ -52,10 +53,11 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "10.0.400"
     },
     "frameworks": {
       "net8.0": {
+        "framework": "net8.0",
         "targetAlias": "net8.0",
         "imports": [
           "net461",
@@ -73,7 +75,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.316/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

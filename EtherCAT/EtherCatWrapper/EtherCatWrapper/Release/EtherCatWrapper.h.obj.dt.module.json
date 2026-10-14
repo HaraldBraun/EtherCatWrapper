@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "EtherCatWrapper\\Release\\EtherCatWrapper.obj",
+            "outputs": [
+                "EtherCatWrapper\\Release\\EtherCatWrapper.h.obj.dt.module.json",
+                "EtherCatWrapper\\Release\\EtherCatWrapper.h.obj.dt.d.json"
+            ],
+            "requires": []
+        }
+    ]
+}

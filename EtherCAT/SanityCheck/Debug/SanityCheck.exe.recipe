@@ -2,7 +2,10 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Work\GitHub\SOEM-master\EtherCAT\EtherCatWrapper\Debug\SanityCheck.exe</FullPath>
+      <FullPath>C:\Code_LV\BRHA\Libraries\EtherCatWrapper\EtherCAT\EtherCatWrapper\Debug\EtherCatWrapper.dll</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Code_LV\BRHA\Libraries\EtherCatWrapper\EtherCAT\EtherCatWrapper\Debug\SanityCheck.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

@@ -9,3 +9,15 @@ C:\Work\GitHub\SOEM-master\EtherCAT\EtherCatDriver\obj\Debug\net8.0\EtherCatDriv
 C:\Work\GitHub\SOEM-master\EtherCAT\EtherCatDriver\obj\Debug\net8.0\refint\EtherCatDriver.dll
 C:\Work\GitHub\SOEM-master\EtherCAT\EtherCatDriver\obj\Debug\net8.0\EtherCatDriver.pdb
 C:\Work\GitHub\SOEM-master\EtherCAT\EtherCatDriver\obj\Debug\net8.0\ref\EtherCatDriver.dll
+C:\Code_LV\BRHA\Libraries\EtherCatWrapper\EtherCAT\EtherCatDriver\obj\Debug\net8.0\EtherCatDriver.GeneratedMSBuildEditorConfig.editorconfig
+C:\Code_LV\BRHA\Libraries\EtherCatWrapper\EtherCAT\EtherCatDriver\obj\Debug\net8.0\EtherCatDriver.AssemblyInfoInputs.cache
+C:\Code_LV\BRHA\Libraries\EtherCatWrapper\EtherCAT\EtherCatDriver\obj\Debug\net8.0\EtherCatDriver.AssemblyInfo.cs
+C:\Code_LV\BRHA\Libraries\EtherCatWrapper\EtherCAT\EtherCatDriver\obj\Debug\net8.0\EtherCatDriver.csproj.CoreCompileInputs.cache
+C:\Code_LV\BRHA\Libraries\EtherCatWrapper\EtherCAT\EtherCatDriver\obj\Debug\net8.0\EtherCatDriver.sourcelink.json
+C:\Code_LV\BRHA\Libraries\EtherCatWrapper\EtherCAT\EtherCatDriver\bin\Debug\net8.0\EtherCatDriver.deps.json
+C:\Code_LV\BRHA\Libraries\EtherCatWrapper\EtherCAT\EtherCatDriver\bin\Debug\net8.0\EtherCatDriver.dll
+C:\Code_LV\BRHA\Libraries\EtherCatWrapper\EtherCAT\EtherCatDriver\bin\Debug\net8.0\EtherCatDriver.pdb
+C:\Code_LV\BRHA\Libraries\EtherCatWrapper\EtherCAT\EtherCatDriver\obj\Debug\net8.0\EtherCatDriver.dll
+C:\Code_LV\BRHA\Libraries\EtherCatWrapper\EtherCAT\EtherCatDriver\obj\Debug\net8.0\refint\EtherCatDriver.dll
+C:\Code_LV\BRHA\Libraries\EtherCatWrapper\EtherCAT\EtherCatDriver\obj\Debug\net8.0\EtherCatDriver.pdb
+C:\Code_LV\BRHA\Libraries\EtherCatWrapper\EtherCAT\EtherCatDriver\obj\Debug\net8.0\ref\EtherCatDriver.dll

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>C:\Code_LV\BRHA\Libraries\EtherCatWrapper\EtherCAT\EtherCatWrapper\Release\EtherCatWrapper.dll</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Code_LV\BRHA\Libraries\EtherCatWrapper\EtherCAT\EtherCatWrapper\Release\SanityCheck.exe</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles />
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>

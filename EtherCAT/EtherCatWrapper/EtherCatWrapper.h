@@ -63,3 +63,99 @@ ECW_API int ECW_GetAdapterName(int idx, char *buffer, int bufferSize);
 // until one responds with at least one slave
 // Return: Index of the working adapter, or -1 if none match
 ECW_API int ECW_FindWorkingAdapter();
+
+// Read slave alias directly from struct
+ECW_API int ECW_GetSlaveAlias(int slaveIdx, unsigned short *alias);
+
+// *************************
+// * Section for ECW_ReadSdo
+// *************************
+
+// Reads a UINT8 object from the CoE object dictionary.
+ECW_API int ECW_ReadSdoUInt8(int slaveIdx, uint16_t index, uint8_t subIndex, uint8_t *value);
+
+// Reads a UINT16 object from the CoE object dictionary.
+ECW_API int ECW_ReadSdoUInt16(int slaveIdx, uint16_t index, uint8_t subIndex, uint16_t *value);
+
+// Reads a UINT32 object from the CoE object dictionary.
+ECW_API int ECW_ReadSdoUInt32(int slaveIdx, uint16_t index, uint8_t subIndex, uint32_t *value);
+
+// Reads a UINT64 object from the CoE object dictionary.
+ECW_API int ECW_ReadSdoUInt64(int slaveIdx, uint16_t index, uint8_t subIndex, uint64_t *value);
+
+// Reads an INT8 object from the CoE object dictionary.
+ECW_API int ECW_ReadSdoInt8(int slaveIdx, uint16_t index, uint8_t subIndex, int8_t *value);
+
+// Reads an INT16 object from the CoE object dictionary.
+ECW_API int ECW_ReadSdoInt16(int slaveIdx, uint16_t index, uint8_t subIndex, int16_t *value);
+
+// Reads an INT32 object from the CoE object dictionary.
+ECW_API int ECW_ReadSdoInt32(int slaveIdx, uint16_t index, uint8_t subIndex, int32_t *value);
+
+// Reads an INT64 object from the CoE object dictionary.
+ECW_API int ECW_ReadSdoInt64(int slaveIdx, uint16_t index, uint8_t subIndex, int64_t *value);
+
+// Reads a BOOL object from the CoE object dictionary.
+ECW_API int ECW_ReadSdoBool(int slaveIdx, uint16_t index, uint8_t subIndex, bool *value);
+
+// Reads a FLOAT object from the CoE object dictionary.
+ECW_API int ECW_ReadSdoFloat(int slaveIdx, uint16_t index, uint8_t subIndex, float *value);
+
+// Reads a DOUBLE object from the CoE object dictionary.
+ECW_API int ECW_ReadSdoDouble(int slaveIdx, uint16_t index, uint8_t subIndex, double *value);
+
+// Reads a null-terminated string object from the CoE object dictionary.
+// Reads a CoE Visible String object.
+// The caller must provide a writable buffer.
+ECW_API int ECW_ReadSdoString(int slaveIdx, uint16_t index, uint8_t subIndex, char *buffer, int bufferSize);
+
+// *************************
+// * Section for ECW_WriteSdo
+// *************************
+
+// Writes a BOOL object to the CoE object dictionary.
+ECW_API int ECW_WriteSdoBool(int slaveIdx, uint16_t index, uint8_t subIndex, bool value);
+
+// Writes a UINT8 object to the CoE object dictionary.
+ECW_API int ECW_WriteSdoUInt8(int slaveIdx, uint16_t index, uint8_t subIndex, uint8_t value);
+
+// Writes a UINT16 object to the CoE object dictionary.
+ECW_API int ECW_WriteSdoUInt16(int slaveIdx, uint16_t index, uint8_t subIndex, uint16_t value);
+
+// Writes a UINT32 object to the CoE object dictionary.
+ECW_API int ECW_WriteSdoUInt32(int slaveIdx, uint16_t index, uint8_t subIndex, uint32_t value);
+
+// Writes a UINT64 object to the CoE object dictionary.
+ECW_API int ECW_WriteSdoUInt64(int slaveIdx, uint16_t index, uint8_t subIndex, uint64_t value);
+
+// Writes an INT8 object to the CoE object dictionary.
+ECW_API int ECW_WriteSdoInt8(int slaveIdx, uint16_t index, uint8_t subIndex, int8_t value);
+
+// Writes an INT16 object to the CoE object dictionary.
+ECW_API int ECW_WriteSdoInt16(int slaveIdx, uint16_t index, uint8_t subIndex, int16_t value);
+
+// Writes an INT32 object to the CoE object dictionary.
+ECW_API int ECW_WriteSdoInt32(int slaveIdx, uint16_t index, uint8_t subIndex, int32_t value);
+
+// Writes an INT64 object to the CoE object dictionary.
+ECW_API int ECW_WriteSdoInt64(int slaveIdx, uint16_t index, uint8_t subIndex, int64_t value);
+
+// Writes a FLOAT object to the CoE object dictionary.
+ECW_API int ECW_WriteSdoFloat(int slaveIdx, uint16_t index, uint8_t subIndex, float value);
+
+// Writes a DOUBLE object to the CoE object dictionary.
+ECW_API int ECW_WriteSdoDouble(int slaveIdx, uint16_t index, uint8_t subIndex, double value);
+
+// Writes a CoE Visible String object.
+// buffer: caller-provided data, length: exact number of bytes to write (no implicit null terminator added).
+ECW_API int ECW_WriteSdoString(int slaveIdx, uint16_t index, uint8_t subIndex, const char *buffer, int length);
+
+// *************************
+// Debug Section
+// *************************
+ECW_API unsigned short ECW_DebugGetAlias(int slaveIdx);
+ECW_API unsigned short ECW_DebugGetConfigAdr(int slaveIdx);
+ECW_API const char *ECW_DebugGetName(int slaveIdx);
+ECW_API unsigned int ECW_DebugGetRevision(int slaveIdx);
+ECW_API unsigned int ECW_DebugGetSerial(int slaveIdx);
+ECW_API int ECW_DebugReadSdoString(int slaveIdx, uint16_t index, uint8_t subindex, char *buffer, int bufferSize);
